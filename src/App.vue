@@ -32,7 +32,6 @@
             <v-btn type="submit">Prijavi se</v-btn>
           </v-form>
           <v-form v-else @submit.prevent="obradiRegistraciju">
-            <!-- Dodajte polja za registraciju -->
             <v-text-field v-model="ime" label="Ime"></v-text-field>
             <v-text-field v-model="prezime" label="Prezime"></v-text-field>
             <v-text-field v-model="brojTelefona" label="Broj telefona"></v-text-field>
