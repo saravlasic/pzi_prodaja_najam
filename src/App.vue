@@ -1,16 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-        v-model="drawer"
-        app
-    >
-      <!--  -->
-      <v-tabs v-model="activeTab" slider-color="primary">
-        <v-tab v-for="(item, index) in tabs" :key="index" @click="activeTab = index">
-          {{ item }}
-        </v-tab>
-      </v-tabs>
-    </v-navigation-drawer>
+    <IzbornikMenu :drawer="drawer" />
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Prodaja/najam haljina</v-toolbar-title>
@@ -29,7 +19,9 @@
             <p style="font-size: 0.8em; margin-top: 8px;">
               Potreban vam je račun? <a href="#" @click="prikaziRegistraciju">Registrirajte se</a>
             </p>
-            <v-btn type="submit">Prijavi se</v-btn>
+            <v-card-text class="text-center">
+              <v-btn class="black white--text" type="submit">Prijavi se</v-btn>
+            </v-card-text>
           </v-form>
           <v-form v-else @submit.prevent="obradiRegistraciju">
             <v-text-field v-model="ime" label="Ime"></v-text-field>
@@ -37,10 +29,12 @@
             <v-text-field v-model="brojTelefona" label="Broj telefona"></v-text-field>
             <v-text-field v-model="email" label="Email"></v-text-field>
             <v-text-field v-model="novaLozinka" label=" Lozinka" type="password"></v-text-field>
-            <v-btn type="submit">Registrirajte se</v-btn>
-            <p style="font-size: 0.8em; margin-top: 8px;">
-              Već imate račun? <a href="#" @click="prikaziPrijavu">Prijavite se</a>
-            </p>
+            <v-card-text class="text-center">
+              <v-btn class="black white--text"  type="submit">Registrirajte se</v-btn>
+              <p style="font-size: 0.8em; margin-top: 8px;">
+                Već imate račun? <a href="#" @click="prikaziPrijavu">Prijavite se</a>
+              </p>
+            </v-card-text>
           </v-form>
         </v-card-text>
       </v-card>
@@ -52,7 +46,12 @@
 </template>
 
 <script>
+import IzbornikMenu from './IzbornikMenu.vue';
 export default {
+  components: {
+    IzbornikMenu
+  },
+
   data() {
     return {
       dialogPrijave: false,
