@@ -1,11 +1,13 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" style="background-color: #FFB6C1">
     <IzbornikMenu :drawer="drawer" />
+    <FootersView />
+    <HomeView/>
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Prodaja/najam haljina</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn @click="prikaziPrijavu">Prijava</v-btn>
+      <v-btn :rounded="false" @click="prikaziPrijavu">Prijava</v-btn>
     </v-app-bar>
     <v-dialog v-model="dialogPrijave" max-width="500px">
       <v-card>
@@ -13,7 +15,6 @@
         <v-card-title v-else>Registracija</v-card-title>
         <v-card-text>
           <v-form v-if="!registracijaMode" @submit.prevent="obradiPrijavu">
-            <!-- Dodajte polja za unos podataka za prijavu -->
             <v-text-field v-model="korisnickoIme" label="Korisničko ime"></v-text-field>
             <v-text-field v-model="lozinka" label="Lozinka" type="password"></v-text-field>
             <p style="font-size: 0.8em; margin-top: 8px;">
@@ -47,9 +48,15 @@
 
 <script>
 import IzbornikMenu from './IzbornikMenu.vue';
+import FootersView from './FootersView.vue';
+import HomeView from "@/views/HomeView.vue";
+
+
 export default {
   components: {
-    IzbornikMenu
+    HomeView,
+    IzbornikMenu,
+    FootersView,
   },
 
   data() {
@@ -88,3 +95,6 @@ export default {
   }
 };
 </script>
+<style>
+</style>
+

@@ -1,8 +1,10 @@
 <template>
-  <v-navigation-drawer v-model="drawer" app>
+  <v-navigation-drawer v-model="localDrawer" app>
     <v-list>
       <v-list-item @click="prikaziProdaju">Prodaja</v-list-item>
+      <v-divider></v-divider>
       <v-list-item @click="prikaziNajam">Najam</v-list-item>
+      <v-divider></v-divider>
       <v-list-item @click="pregledajSve">Pregledaj sve</v-list-item>
     </v-list>
   </v-navigation-drawer>
@@ -15,21 +17,27 @@ export default {
   },
   data() {
     return {
-      drawer: false
+      localDrawer: false
     };
+  },
+  watch: {
+    drawer(newValue) {
+      this.localDrawer = newValue;
+    }
   },
   methods: {
     prikaziProdaju() {
-      // Logika za prikazivanje prodaje
       console.log('Prikazuje se prodaja');
     },
     prikaziNajam() {
-      // Logika za prikazivanje najma
       console.log('Prikazuje se najam');
     },
     pregledajSve() {
-      // Logika za pregled svega
       console.log('Pregledaj sve');
+    },
+    toggleDrawer() {
+      this.localDrawer = !this.localDrawer;
+      this.$emit('update:drawer', this.localDrawer);
     }
   }
 };
